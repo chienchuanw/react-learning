@@ -1,4 +1,5 @@
 import { Fragment } from "react/jsx-runtime";
+import { MouseEvent } from "react";
 
 function ListGroup() {
   const items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
@@ -112,14 +113,48 @@ function ListGroupWithTernary() {
 function ListGroupWithTernaryImprove() {
   let items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
 
-  items = [];
+
 
   return (
     <>
       <h1>List</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
-        {items.map(item => <li key={item}>{item}</li>)}
+        {/* Use onClick to listen to click event */}
+        {items.map((item, index) => 
+        <li 
+          className="list-group-item" 
+          key={item} onClick={() => console.log(item, index)}
+        >
+          {item}
+        </li>)}
+      </ul>
+    </>
+  )
+}
+
+function ListGroupWithOnClick() {
+  let items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
+  
+  // The following function is call "Event Handler".
+  // We have to specify the type of "event" parameter. Otherwise, we will get a warning.
+  const handleClick = (event: MouseEvent) => console.log(event)
+
+
+  return (
+    <>
+      <h1>List</h1>
+      {items.length === 0 && <p>No item found</p>}
+      <ul className="list-group">
+        {items.map((item, index) => 
+        <li 
+          className="list-group-item" 
+          // Noted that instead of calling this function, we are simply just referencing it.
+          // Whenever user click on this event, handleClick function should be called. And it will be done later in runtime.
+          key={item} onClick={handleClick}
+        >
+          {item}
+        </li>)}
       </ul>
     </>
   )
@@ -166,4 +201,4 @@ function ListGroupWithFunction() {
 }
 
 
-export default ListGroupWithTernaryImprove;
+export default ListGroupWithOnClick;
