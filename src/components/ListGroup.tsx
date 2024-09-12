@@ -52,6 +52,21 @@ function ListGroup3() {
   );
 }
 
+function ListGroup() {
+  const items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
+
+  return (
+    <>
+      <h1>List</h1>
+      <ul className="list-group">
+        {/* If we want to write JS expression in JSX, we have to add curly braces */}
+        {/* Each child in a list should have a "key" property and it needs to be unique */}
+        {items.map(item => <li key={item}>{item}</li>)}
+      </ul>
+    </>
+  )
+}
 
 
-export default ListGroup2;
+
+export default ListGroup;
