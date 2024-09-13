@@ -1,5 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 import { MouseEvent } from "react";
+import { useState } from "react";
 
 function ListGroup() {
   const items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
@@ -147,11 +148,14 @@ function ListGroupWithOnClick() {
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((item, index) => 
+
+        // Bootstrap can use "active" to highlight the element.
         <li 
-          className="list-group-item" 
-          // Noted that instead of calling this function, we are simply just referencing it.
+          className="list-group-item active" 
           // Whenever user click on this event, handleClick function should be called. And it will be done later in runtime.
-          key={item} onClick={handleClick}
+          // Noted that instead of calling this function, we are simply just referencing it.
+          key={item} 
+          onClick={handleClick}
         >
           {item}
         </li>)}
@@ -200,5 +204,68 @@ function ListGroupWithFunction() {
   )
 }
 
+function ListGroupWithActive() {
+  let items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
 
-export default ListGroupWithOnClick;
+  // Set the initial selectedIndex
+  let selectedIndex = 0;
+
+  return (
+    <>
+      <h1>List</h1>
+      {items.length === 0 && <p>No item found</p>}
+      <ul className="list-group">
+        {items.map((item, index) => 
+
+        <li 
+          className={ selectedIndex === index ? 'list-group-item active' : 'list-group-item'
+          } 
+          key={item} 
+          // This onClick will not work, because the variable in a component will not be updated in React. It will only be updated locally.
+          // In this case, though selectedIndex will be updated with new index, React would not notice it.
+          // Therefore, we have to use a hook call useState
+          onClick={() => { selectedIndex = index }}
+        >
+          {item}
+        </li>)}
+      </ul>
+    </>
+  )
+}
+
+// By convention, we name interface to props.
+// We can also prefix with the name of the component.
+interface Props {
+  items: string[];
+  heading: string;
+}
+
+// { items, heading } are destructed props.
+// If we use "props" instead of destructing it, we have to write props.items and prop.heading underneath, which will be really repetitive and redundant.
+function ListGroupWithState({ items, heading }: Props) {
+  const [selectedIndex, setSelectIndex] = useState(-1)
+
+  return (
+    <>
+      <h1>{ heading }</h1>
+      {items.length === 0 && <p>No item found</p>}
+      <ul className="list-group">
+        {items.map((item, index) => 
+
+        <li 
+          className={ selectedIndex === index ? 'list-group-item active' : 'list-group-item'
+          } 
+          key={item} 
+          onClick={() => { setSelectIndex(index); }}
+        >
+          {item}
+        </li>)}
+      </ul>
+    </>    
+  )
+
+}
+
+
+
+export default ListGroupWithState;
