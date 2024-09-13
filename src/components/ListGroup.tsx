@@ -238,11 +238,12 @@ function ListGroupWithActive() {
 interface Props {
   items: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
 
 // { items, heading } are destructed props.
 // If we use "props" instead of destructing it, we have to write props.items and prop.heading underneath, which will be really repetitive and redundant.
-function ListGroupWithState({ items, heading }: Props) {
+function ListGroupWithState({ items, heading, onSelectItem }: Props) {
   const [selectedIndex, setSelectIndex] = useState(-1)
 
   return (
@@ -256,7 +257,10 @@ function ListGroupWithState({ items, heading }: Props) {
           className={ selectedIndex === index ? 'list-group-item active' : 'list-group-item'
           } 
           key={item} 
-          onClick={() => { setSelectIndex(index); }}
+          onClick={() => { 
+            setSelectIndex(index); 
+            onSelectItem(item)
+          }}
         >
           {item}
         </li>)}
