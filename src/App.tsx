@@ -2,6 +2,8 @@ import Message from './Message';
 import ListGroup from './components/ListGroup';
 import Alert from './components/Alert';
 import Button from './components/Button';
+import DismissingAlert from './components/DismissingAlert';
+import { useState } from 'react';
 
 function AppMessage() {
   // We should always close our React component like the comment below. Otherwise, it will get a compilation error.
@@ -33,11 +35,26 @@ function AppAlert() {
 function AppButton() {
   return (
     <div>
-      <Button>
+      <Button color='secondary' onClick={() => console.log("clicked")}>
         This is a button!
       </Button>
     </div>
   )
 }
 
-export default AppButton;
+function AppButtonAlert() {
+  const [alertVisible, setAlertVisibility] = useState(false);
+
+  return (
+    <div>
+      { alertVisible && <DismissingAlert onClose={() => setAlertVisibility(false)}>
+        My Alert
+      </DismissingAlert> }
+      <Button onClick={() => setAlertVisibility(true)}>
+        My Button
+      </Button>
+    </div>
+  )
+}
+
+export default AppButtonAlert;
