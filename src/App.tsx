@@ -1,5 +1,6 @@
-import Message from './Message'
+import Message from './Message';
 import ListGroup from './components/ListGroup';
+import Alert from './components/Alert';
 
 // function App() {
 //   // We should always close our React component like the comment below. Otherwise, it will get a compilation error.
@@ -18,4 +19,15 @@ function App() {
   return <div><ListGroup items={items} heading='Cities' onSelectItem={handleSelectItem}/></div>
 }
 
-export default App;
+function AppAlert() {
+  return (
+    <div>
+      <Alert>
+        Hello <strong>World</strong>
+      </Alert>
+    </div>
+  )
+
+}
+
+export default AppAlert;
