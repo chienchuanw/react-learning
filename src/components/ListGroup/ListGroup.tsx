@@ -1,7 +1,8 @@
 import { Fragment } from "react/jsx-runtime";
 import { MouseEvent } from "react";
 import { useState } from "react";
-import './ListGroup.css'
+// "styles" is just a regular JS object that has all the classes we have defined.
+import styles from './ListGroup.module.css';
 
 function ListGroup() {
   const items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
@@ -256,7 +257,9 @@ function ListGroupWithState({ items, heading, onSelectItem }: Props) {
     <>
       <h1>{ heading }</h1>
       {items.length === 0 && <p>No item found</p>}
-      <ul className="list-group">
+      {/* To use CSS module, we have to use curly braces instead of quotation marks. */}
+      {/* Since JS do not accept kabab case as a property name, we have to use square brackets like style['list-group'] instead of dot notation. */}
+      <ul className={[styles.listGroup, styles.container].join(' ')}>
         {items.map((item, index) => 
 
         <li 
