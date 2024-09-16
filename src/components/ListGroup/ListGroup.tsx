@@ -238,8 +238,8 @@ function ListGroupWithActive() {
 // By convention, we name interface to props.
 // We can also prefix with the name of the component.
 interface Props {
-  items: string[];
   heading: string;
+  items: string[];
   onSelectItem: (item: string) => void;
 }
 
@@ -279,5 +279,52 @@ function ListGroupWithState({ items, heading, onSelectItem }: Props) {
 }
 
 
+import styled from "styled-components";
 
-export default ListGroupWithState;
+// Using Styled Components
+// The return value of the following styled components is going to be a component that has all the styles applied to it.
+// So we can store the return value in a variable.
+const List = styled.ul`
+  list-style: none;
+  padding: 0px;
+`
+
+interface ListItemProps {
+  $active: boolean;
+}
+
+// You can specify props in the angle brackets.
+const ListItem = styled.li<ListItemProps>`
+  padding: 5px 0;
+  background: ${ (props) => (props.$active ? 'blue' : 'none')}
+`
+
+
+function ListGroupStyle({heading, items, onSelectItem}: Props) {
+  const [selectedIndex, setSelectIndex] = useState(0)
+
+
+  return (
+    <>
+      <h1>{ heading }</h1>
+      {items.length === 0 && <p>No item found</p>}
+      <List>
+        {items.map((item, index) => 
+        <ListItem 
+          $active={index === selectedIndex}
+          key={item}
+          onClick={() => {
+            setSelectIndex(index);
+            onSelectItem(item)
+            }}
+        >
+              {item}
+          </ListItem>
+        )}
+      </List>
+    </>
+  )
+}
+
+
+export default ListGroupStyle;
