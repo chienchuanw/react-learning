@@ -1,9 +1,11 @@
 import Message from './Message';
+// By default, if we are referencing a folder instead of a file, it will look for a file called "index"
 import ListGroup from './components/ListGroup';
 import Alert from './components/Alert';
 import Button from './components/Button';
 import DismissingAlert from './components/DismissingAlert';
 import { useState } from 'react';
+import './App.css'
 
 function AppMessage() {
   // We should always close our React component like the comment below. Otherwise, it will get a compilation error.
@@ -57,4 +59,4 @@ function AppButtonAlert() {
   )
 }
 
-export default AppButtonAlert;
+export default App;

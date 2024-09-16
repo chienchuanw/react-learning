@@ -1,1 +1,5 @@
 /* App.css contains all the styles for "App" component which is App.tsx */
+
+.list-group {
+    background-color: red;
+}
