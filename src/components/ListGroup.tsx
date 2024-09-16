@@ -246,6 +246,11 @@ interface Props {
 function ListGroupWithState({ items, heading, onSelectItem }: Props) {
   const [selectedIndex, setSelectIndex] = useState(-1)
 
+  // Notice that "props" are immutable.
+  // So assigning a value to a prop inside a component will not change anything.
+  // Even if you can change props value, you should not do so.
+  // heading = "Countries";
+
   return (
     <>
       <h1>{ heading }</h1>
@@ -267,7 +272,6 @@ function ListGroupWithState({ items, heading, onSelectItem }: Props) {
       </ul>
     </>    
   )
-
 }
 
 
