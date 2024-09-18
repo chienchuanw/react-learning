@@ -76,10 +76,13 @@ import LikeButton from './components/LikeButton';
 
 
 function AppLikeButton () {
+  const handleClick = () => {
+    console.log('clicked')  
+  }
+
   return (
-    <LikeButton />
+    <LikeButton onClick={handleClick} />
   )
 }
-
 
 export default AppLikeButton;
