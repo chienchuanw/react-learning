@@ -30,6 +30,9 @@ function App() {
       {/* Adding react-icon and configure its styles */}
       <BsArrowDownLeftCircle color='red' size='40' />
       <div><ListGroup items={items} heading='Cities' onSelectItem={handleSelectItem}/></div>
+      <Button onClick={() => {}}>
+        My button
+      </Button>
     </>
   )
 }

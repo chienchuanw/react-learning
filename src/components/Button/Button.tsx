@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Button.module.css';
 
 // You can sort props in alphabetical order which will make it easier to read.
 interface Props {
@@ -18,4 +19,11 @@ const Button = ({ children, color='primary', onClick }: Props) => {
   )
 }
 
-export default Button
+// Styled button with CSS module
+const ButtonInStyle = ({ children, color='primary', onClick }: Props) => {
+  return (
+    <button className={[styles.btn, styles['btn-' + color]].join(' ')} onClick={onClick}>{ children }</button>
+  )
+}
+
+export default ButtonInStyle
