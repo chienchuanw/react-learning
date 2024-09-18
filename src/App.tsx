@@ -72,4 +72,14 @@ function AppButtonAlert() {
   )
 }
 
-export default App;
+import LikeButton from './components/LikeButton';
+
+
+function AppLikeButton () {
+  return (
+    <LikeButton />
+  )
+}
+
+
+export default AppLikeButton;
