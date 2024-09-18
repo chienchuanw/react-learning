@@ -306,7 +306,8 @@ function ListGroupStyle({heading, items, onSelectItem}: Props) {
 
   return (
     <>
-      <h1>{ heading }</h1>
+      {/* You can also use "style" props to accomplish inline styles, which is not recommended. */}
+      <h1 style={{backgroundColor: 'rebeccapurple'}}>{ heading }</h1>
       {items.length === 0 && <p>No item found</p>}
       <List>
         {items.map((item, index) => 
