@@ -15,13 +15,23 @@ function AppMessage() {
   return <div><Message /></div>;
 }
 
+// Import icon from "react-icons"
+
+import { BsArrowDownLeftCircle } from "react-icons/bs";
+
 function App() {
   let items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
   const handleSelectItem = (item: string) => {
     console.log((item))
   }
 
-  return <div><ListGroup items={items} heading='Cities' onSelectItem={handleSelectItem}/></div>
+  return (
+    <>
+      {/* Adding react-icon and configure its styles */}
+      <BsArrowDownLeftCircle color='red' size='40' />
+      <div><ListGroup items={items} heading='Cities' onSelectItem={handleSelectItem}/></div>
+    </>
+  )
 }
 
 function AppAlert() {
