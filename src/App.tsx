@@ -2,30 +2,26 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [tags, setTags] = useState(['happy', 'cheerful']);
+  const [bugs, setBugs] = useState([ 
+    { id: 1, title: 'Bug 1', fixed: false },
+    { id: 2, title: 'Bug 2', fixed: false },
+  ])
 
-  // Add item to tags array
-  const handleClickAdd = () => {
-    setTags([ ...tags, 'exciting']) // This copies the original array and adds new item.
-  };
-
-  // Remove item from tags array
-  const handleClickRemove = () => {
-    setTags(tags.filter(tag => tag !== 'happy'));
-  };
-  
-  // Update an existing item in tags array
-  const handleClickUpdate = () => {
-    setTags(tags.map(tag => tag === 'cheerful' ? 'depressed' : tag))
-  };
-
+  // Update "fixed" status in Bug 1
+  const handleClick = () => {
+    setBugs(bugs.map(bug => bug.id === 1 ? { ...bug, fixed: !bug.fixed } : bug))
+  }
 
   return (
     <div>
-      <span>{tags}</span>
-      <button onClick={handleClickAdd}>Add</button>
-      <button onClick={handleClickRemove}>Remove</button>
-      <button onClick={handleClickUpdate}>Update</button>
+      <ul>
+        {bugs.map(bug => (
+          <li key={bug.id}>
+            ID: {bug.id}, Title: {bug.title}, Fixed: {bug.fixed ? 'Yes' : 'No'}
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleClick}>Update</button>
     </div>
   )
 
