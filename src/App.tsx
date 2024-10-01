@@ -1,34 +1,32 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [drink, setDrink] = useState({
+    title: "Americano",
+    price: 5,
+  });
+
+  // When click the button, it will update the price of the drink.
+  const handleClick = () => {
+    // Since we cannot directly update the state by assigning new value, we have to declare a new variable and pass it into setDrink.
+    const newDrink = {
+      title: drink.title,  // This will copy the old value as the value of title.
+
+      // Update the target property
+      price: 6,
+    }
+    setDrink(newDrink); // Update the state.
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      {drink.price}
+      <button onClick={handleClick}>Click Me</button>
     </div>
   )
+
+
 }
 
 export default App
