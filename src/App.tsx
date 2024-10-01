@@ -2,28 +2,30 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [customer, setCustomer] = useState({
-    name: 'John',
-    address: {
-      city: 'San Francisco',
-      zipCode: 94111
-    }
-  });
+  const [tags, setTags] = useState(['happy', 'cheerful']);
 
-  // Update zipCode
-  const handleClick = () => {
-    setCustomer({ 
-      ...customer, // Notice that spread operator in JS can only perform a shallow copy. In other words, it will not copy the nested properties of an object but reference the same object in memory. That is not what we want because every time we modify the address, it will affect the others.
-      address: { ...customer.address, zipCode: 94112 } // That's why we need to use spread operator again to copy and thus update the zipCode.
-    })  
-  }
+  // Add item to tags array
+  const handleClickAdd = () => {
+    setTags([ ...tags, 'exciting']) // This copies the original array and adds new item.
+  };
+
+  // Remove item from tags array
+  const handleClickRemove = () => {
+    setTags(tags.filter(tag => tag !== 'happy'));
+  };
+  
+  // Update an existing item in tags array
+  const handleClickUpdate = () => {
+    setTags(tags.map(tag => tag === 'cheerful' ? 'depressed' : tag))
+  };
+
 
   return (
     <div>
-      {customer.name}
-      {customer.address.city}
-      {customer.address.zipCode}
-      <button onClick={handleClick}>Change Zip Code</button>
+      <span>{tags}</span>
+      <button onClick={handleClickAdd}>Add</button>
+      <button onClick={handleClickRemove}>Remove</button>
+      <button onClick={handleClickUpdate}>Update</button>
     </div>
   )
 
